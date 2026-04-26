@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>InfoGPT</title>
+    <link rel="stylesheet" href="premirrcs.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>💻 InfoGPT</h2>
+        <button class="new-chat">+ Nouveau chat</button>
+        <div class="history">
+            <p>💬 JavaScript</p>
+            <p>💬 HTML/CSS</p>
+            <p>💬 Réseaux</p>
+        </div>
+    </div>
+
+    <!-- Main Chat -->
+    <div class="main">
+        <div class="chat-area" id="chat">
+
+            <div class="message bot">
+                 Salut ! Pose-moi une question en informatique.
+            </div>
+
+        </div>
+
+        <div class="input-box">
+            <input type="text" id="input" placeholder="Pose ta question en informatique...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("input");
+    let chat = document.getElementById("chat");
+
+    if(input.value.trim() === "") return;
+
+    // user msg
+    let user = document.createElement("div");
+    user.className = "message user";
+    user.textContent = input.value;
+    chat.appendChild(user);
+
+    // fake bot
+    let bot = document.createElement("div");
+    bot.className = "message bot";
+    bot.textContent = "💡 Réponse informatique (à connecter avec API)";
+    chat.appendChild(bot);
+
+    input.value = "";
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+</body>
+</html>
