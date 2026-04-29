@@ -11,12 +11,10 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>💻 InfoGPT</h2>
-        <button class="new-chat">+ Nouveau chat</button>
+        <h2>💻 AlgoAssist</h2>
         <div class="history">
-            <p>💬 JavaScript</p>
-            <p>💬 HTML/CSS</p>
-            <p>💬 Réseaux</p>
+            <p>💬 Cour</p>
+            <p>💬 Quiz</p>
         </div>
     </div>
 
@@ -55,7 +53,6 @@ function sendMessage() {
 
     input.value = "";
 
-    // call Flask API
     fetch("/chat", {
         method: "POST",
         headers: {
