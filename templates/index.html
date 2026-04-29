@@ -38,6 +38,9 @@
 
 </div>
 
+<input type="text" id="msg">
+<button onclick="sendMessage()">Send</button>
+
 <script>
 function sendMessage() {
     let input = document.getElementById("input");
@@ -60,26 +63,12 @@ function sendMessage() {
     input.value = "";
     chat.scrollTop = chat.scrollHeight;
 }
+
 </script>
 
-<input type="text" id="msg">
-<button onclick="sendMessage()">Send</button>
 
-<script>
-function sendMessage() {
-  let msg = document.getElementById("msg").value;
 
-  fetch("/chat", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({message: msg})
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log(data.reply);
-  });
-}
-</script>
+
 
 </body>
 </html>
