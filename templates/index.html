@@ -11,12 +11,10 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <h2>💻 InfoGPT</h2>
-        <button class="new-chat">+ Nouveau chat</button>
+        <h2>💻 AlgoAssist</h2>
         <div class="history">
-            <p>💬 JavaScript</p>
-            <p>💬 HTML/CSS</p>
-            <p>💬 Réseaux</p>
+            <p>💬 Cour</p>
+            <p>💬 Quiz</p>
         </div>
     </div>
 
@@ -43,24 +41,43 @@ function sendMessage() {
     let input = document.getElementById("input");
     let chat = document.getElementById("chat");
 
-    if(input.value.trim() === "") return;
+    if (input.value.trim() === "") return;
 
-    // user msg
+    let userText = input.value;
+
+    // user message
     let user = document.createElement("div");
     user.className = "message user";
-    user.textContent = input.value;
+    user.textContent = userText;
     chat.appendChild(user);
 
-    // fake bot
-    let bot = document.createElement("div");
-    bot.className = "message bot";
-    bot.textContent = "💡 Réponse informatique (à connecter avec API)";
-    chat.appendChild(bot);
-
     input.value = "";
-    chat.scrollTop = chat.scrollHeight;
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: userText })
+    })
+    .then(res => res.json())
+    .then(data => {
+        let bot = document.createElement("div");
+        bot.className = "message bot";
+        bot.textContent = data.reply;
+        chat.appendChild(bot);
+
+        chat.scrollTop = chat.scrollHeight;
+    })
+    .catch(err => {
+        console.error(err);
+    });
 }
 </script>
+
+
+
+
 
 </body>
 </html>
