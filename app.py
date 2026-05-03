@@ -33,7 +33,7 @@ messages=[
     },
     {"role": "user", "content": user_msg}
 ]
-     )
+        )
 
         reply = response.choices[0].message.content
 
