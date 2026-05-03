@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>InfoGPT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>💻 AlgoAssist</h2>
+
+        <div class="history">
+            <p>💬 Chat</p>
+            <p>💬 Cour</p>
+            <p>💬 Quiz</p>
+        </div>
+    </div>
+
+    <!-- Main Chat -->
+    <div class="main">
+        <div class="chat-area" id="chat">
+
+            <div class="message bot">
+                 Salut ! Pose-moi une question en informatique.
+            </div>
+
+        </div>
+
+        <div class="input-box">
+            <input type="text" id="input" placeholder="Pose ta question en informatique...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("input");
+    let chat = document.getElementById("chat");
+
+    if (input.value.trim() === "") return;
+
+    let userText = input.value;
+
+    // user message
+    let user = document.createElement("div");
+    user.className = "message user";
+    user.textContent = userText;
+    chat.appendChild(user);
+
+    input.value = "";
+
+    fetch("/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: userText })
+    })
+    .then(res => res.json())
+    .then(data => {
+        let bot = document.createElement("div");
+        bot.className = "message bot";
+        bot.textContent = data.reply;
+        chat.appendChild(bot);
+
+        chat.scrollTop = chat.scrollHeight;
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+</script>
+
+
+
+
+
+</body>
+</html>

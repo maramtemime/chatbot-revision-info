@@ -100,3 +100,10 @@ body {
     border-radius: 8px;
     cursor: pointer;
 }
+.description {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 5px;
+    text-align: center;
+    padding: 0 10px;
+}
