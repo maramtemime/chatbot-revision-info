@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>InfoGPT</title>
+    <title>AlgoAssist</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -38,7 +38,8 @@
 
 </div>
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script >
 function sendMessage() {
     let input = document.getElementById("input");
     let chat = document.getElementById("chat");
@@ -67,6 +68,7 @@ function sendMessage() {
         let bot = document.createElement("div");
         bot.className = "message bot";
         bot.textContent = data.reply;
+        bot.innerHTML = marked.parse(data.reply);
         chat.appendChild(bot);
 
         chat.scrollTop = chat.scrollHeight;
