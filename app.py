@@ -21,9 +21,8 @@ def chat():
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
             messages=[
-                {"role": "system", "content": "Tu es un assistant expert en informatique. Réponds toujours en français de manière claire, simple et pédagogique. Utilise une mise en forme propre en Markdown avec des titres, des listes et des exemples de code bien structurés."},
+                {"role": "system", "content": "Tu es un assistant spécialisé en informatique. Réponds toujours en français."},
                 {"role": "user", "content": user_msg}
-                {"role": "system", "content": "Réponds en français avec une mise en forme claire: titres, listes et exemples de code bien structurés en Markdown."}, 
             ]
         )
 
